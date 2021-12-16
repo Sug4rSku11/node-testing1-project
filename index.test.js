@@ -100,14 +100,36 @@ describe('[Exercise 5] Seasons', () => {
 describe('[Exercise 6] Car', () => {
  let focus
  beforeEach(() => {
-   focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
+   focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car - name- tanksize- mpg
   })
   test('[15] driving the car returns the updated odometer', () => {
-
+    focus.drive(100)
+    expect(focus.odometer).toBe(100) 
+    focus.drive(100)
+    expect(focus.odometer).toBe(200)
+    focus.drive(100)
+    expect(focus.odometer).toBe(300)
   })
-  test('[16] driving the car uses gas', () => {})
-  test('[17] refueling allows to keep driving', () => {})
-  test('[18] adding fuel to a full tank has no effect', () => {})
+  test('[16] driving the car uses gas', () => {
+    focus.drive(30)
+    expect(focus.tank).toBe(19)
+    focus.drive(30)
+    expect(focus.tank).toBe(18)
+    focus.drive(60)
+    expect(focus.tank).toBe(16)
+  })
+  test('[17] refueling allows to keep driving', () => {
+    focus.drive(300)
+    focus.refuel(10)
+    focus.drive(300)
+    focus.refuel(10)
+    focus.drive(600)
+    expect(focus.odometer).toBe(1200)
+  })
+  test('[18] adding fuel to a full tank has no effect', () => {
+    focus.refuel(100)
+    expect(focus.tank).toBe(20)
+  })
 })
 
 describe('[Exercise 7] isEvenNumberAsync', () => {
