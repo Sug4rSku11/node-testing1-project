@@ -68,11 +68,33 @@ describe('[Exercise 5] Seasons', () => {
    test('[9] the FIRST call of seasons.next returns "summer"', () => {
      expect(seasons.next()).toMatch("summer")
    })
-  / test('[10] the SECOND call of seasons.next returns "fall"', () => {})
-   test('[11] the THIRD call of seasons.next returns "winter"', () => {})
-   test('[12] the FOURTH call of seasons.next returns "spring"', () => {})
-   test('[13] the FIFTH call of seasons.next returns again "summer"', () => {})
-   test('[14] the 40th call of seasons.next returns "spring"', () => {})
+  / test('[10] the SECOND call of seasons.next returns "fall"', () => {
+    seasons.next()
+    expect(seasons.next()).toMatch("fall")
+  })
+   test('[11] the THIRD call of seasons.next returns "winter"', () => {
+    seasons.next()
+    seasons.next()
+    expect(seasons.next()).toMatch("winter")
+   })
+   test('[12] the FOURTH call of seasons.next returns "spring"', () => {
+    for (let i = 0; i < 3; i++){
+      seasons.next()
+    }
+    expect(seasons.next()).toMatch("spring")
+   })
+   test('[13] the FIFTH call of seasons.next returns again "summer"', () => {
+    for (let i = 0; i < 4; i++){
+      seasons.next()
+    }
+    expect(seasons.next()).toMatch("summer")
+   })
+   test('[14] the 40th call of seasons.next returns "spring"', () => {
+     for (let i = 0; i < 39; i++){
+       seasons.next()
+     }
+     expect(seasons.next()).toMatch("spring")
+   })
 })
 
 describe('[Exercise 6] Car', () => {
